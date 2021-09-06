@@ -9,6 +9,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-EXPOSE 5000
-EXPOSE 5001
+EXPOSE 80
 ENTRYPOINT ["dotnet", "fkd.pay.api.dll"]
