@@ -7,7 +7,7 @@ namespace fkd.pay.api.Domain.Entities
     {
         private const decimal InitialBalance= (decimal)10.000;
         private string _cardNumber;
-        public string CardName => CardNumberFix();
+        public string CardNumber => CardNumberFix();
         private int _expMonth;
         public int ExpMonth => _expMonth;
         private int _expYear;
