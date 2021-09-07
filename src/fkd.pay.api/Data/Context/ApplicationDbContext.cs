@@ -1,8 +1,9 @@
 ﻿using System;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using fkd.pay.api.Data.Mapping;
 using fkd.pay.api.Domain.SeedWork;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -34,7 +35,7 @@ namespace fkd.pay.api.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.ApplyConfiguration(new PaymentCardMap());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
