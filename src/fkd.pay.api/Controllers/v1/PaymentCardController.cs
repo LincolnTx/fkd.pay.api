@@ -16,9 +16,18 @@ namespace fkd.pay.api.Controllers.v1
             _bus = bus;
         }
 
-        [HttpPost]
+        [HttpPost("payment-card")]
         [ProducesResponseType((int) HttpStatusCode.NoContent)]
         public async Task<IActionResult> CreatePaymentCard([FromBody] CreateNewPaymentCardCommand command)
+        {
+            var response = await _bus.Send(command);
+
+            return Response(NoContent());
+        }
+        
+        [HttpPost("purchase")]
+        [ProducesResponseType((int) HttpStatusCode.NoContent)]
+        public async Task<IActionResult> MakePurchase([FromBody] NewPurchaseCommand command)
         {
             var response = await _bus.Send(command);
 

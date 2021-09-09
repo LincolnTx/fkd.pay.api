@@ -5,3 +5,8 @@ Code, Error
 004, Invalid cvv
 005, Invalid card holder name
 006, Card number already exists
+007, Error to save modifications
+008, Purchase value must be grater than 0
+009, Purchase value cannot be empty
+010, Card number doesn't exist
+011, Insufficient funds to complete purchase

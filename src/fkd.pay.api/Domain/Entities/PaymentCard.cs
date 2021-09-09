@@ -5,7 +5,8 @@ namespace fkd.pay.api.Domain.Entities
 {
     public class PaymentCard : Entity
     {
-        private const decimal InitialBalance= (decimal)10.000;
+        //TODO: Use different currency Dollar, Real, Euro etc...
+        private const decimal InitialBalance= 10000;
         private string _cardNumber;
         public string CardNumber => CardNumberFix();
         private int _expMonth;
