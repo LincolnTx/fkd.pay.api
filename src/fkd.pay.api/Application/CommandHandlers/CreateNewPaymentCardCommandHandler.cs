@@ -14,11 +14,10 @@ namespace fkd.pay.api.Application.CommandHandlers
         private readonly ILogger<CreateNewPaymentCardCommandHandler> _logger;
         
         public CreateNewPaymentCardCommandHandler(
-            IMediator bus, 
-            INotificationHandler<ExceptionNotification> notifications, 
+            IMediator bus,
             IPaymentCardRepository paymentCardRepository, 
             ILogger<CreateNewPaymentCardCommandHandler> logger) 
-            : base(bus, notifications)
+            : base(bus)
         {
             _paymentCardRepository = paymentCardRepository;
             _logger = logger;

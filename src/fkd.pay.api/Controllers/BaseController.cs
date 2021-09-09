@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using fkd.pay.api.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using fkd.pay.api.Domain.Exceptions;
@@ -6,6 +7,7 @@ using fkd.pay.api.Domain.Exceptions;
 namespace fkd.pay.api.Controllers
 {
     [Route("payment/[controller]")]
+    [ServiceFilter(typeof(GlobalExceptionFilterAttribute))]
     public class BaseController : Controller
     {
         private readonly ExceptionNotificationHandler _notifications;

@@ -8,7 +8,7 @@ namespace fkd.pay.api.Domain.Exceptions
 {
     public class ExceptionNotificationHandler : INotificationHandler<ExceptionNotification>
     {
-        private List<ExceptionNotification> _notifications;
+        private static List<ExceptionNotification> _notifications = new List<ExceptionNotification>();
 		
         public ExceptionNotificationHandler()
         {
