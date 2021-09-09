@@ -5,7 +5,7 @@ using fkd.pay.api.Domain.Exceptions;
 
 namespace fkd.pay.api.Controllers
 {
-    [Route("ordering/[controller]")]
+    [Route("payment/[controller]")]
     public class BaseController : Controller
     {
         private readonly ExceptionNotificationHandler _notifications;

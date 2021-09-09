@@ -1,0 +1,7 @@
+Code, Error
+001, Invalid card number
+002, Empty card number
+003, Invalid exp time
+004, Invalid cvv
+005, Invalid card holder name
+006, Card number already exists
