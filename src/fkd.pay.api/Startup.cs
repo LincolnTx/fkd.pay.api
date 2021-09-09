@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using fkd.pay.api.Application.CommandHandlers;
+using fkd.pay.api.Infra.IoC.Configurations;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,9 +26,11 @@ namespace fkd.pay.api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDependencyInjectionSetup();
+            services.AddMediatR(typeof(CommandHandler));
+            services.AddDatabaseSetup();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -33,7 +38,6 @@ namespace fkd.pay.api
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -43,7 +47,6 @@ namespace fkd.pay.api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "fkd.pay.api v1"));
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
