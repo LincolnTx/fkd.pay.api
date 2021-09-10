@@ -26,7 +26,7 @@ namespace fkd.pay.api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "fkd.pay.api", Version = "v1"});
             });
-            
+            services.AddAutoMapper();
             services.AddDependencyInjectionSetup();
             services.AddMediatR(typeof(CommandHandler));
             services.AddScoped<GlobalExceptionFilterAttribute>();
