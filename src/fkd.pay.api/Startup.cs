@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using fkd.pay.api.Application.CommandHandlers;
+using fkd.pay.api.Filters;
+using fkd.pay.api.Infra.IoC.Configurations;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace fkd.pay.api
@@ -23,17 +20,21 @@ namespace fkd.pay.api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "fkd.pay.api", Version = "v1"});
             });
+            services.AddAutoMapper();
+            services.AddDependencyInjectionSetup();
+            services.AddMediatR(typeof(Startup));
+            services.AddScoped<GlobalExceptionFilterAttribute>();
+            services.AddDatabaseSetup();
+            
+            services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -43,8 +44,7 @@ namespace fkd.pay.api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "fkd.pay.api v1"));
             }
 
-            app.UseHttpsRedirection();
-
+            app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseRouting();
 
             app.UseAuthorization();
