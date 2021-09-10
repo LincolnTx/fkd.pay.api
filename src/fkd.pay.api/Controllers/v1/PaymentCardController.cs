@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using fkd.pay.api.Domain.Exceptions;
 using fkd.pay.api.Application.Commands;
+using fkd.pay.api.Application.DTOs;
+using fkd.pay.api.Application.Queries;
+using fkd.pay.api.Controllers.ResponseDtos;
 
 namespace fkd.pay.api.Controllers.v1
 {
@@ -32,6 +35,16 @@ namespace fkd.pay.api.Controllers.v1
             var response = await _bus.Send(command);
 
             return Response(NoContent());
+        }
+        
+        [HttpGet("check-balance")]
+        [ProducesResponseType(typeof(GetCardBalanceDto),(int) HttpStatusCode.OK)]
+        public async Task<IActionResult> CheckBalance([FromQuery] string cardNumber)
+        {
+            var query = new GetCardBalanceQuery(cardNumber);
+            var response = await _bus.Send(query);
+
+            return Response(Ok(new BaseResponseDto<GetCardBalanceDto>(true, response)));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace fkd.pay.api
             });
             services.AddAutoMapper();
             services.AddDependencyInjectionSetup();
-            services.AddMediatR(typeof(CommandHandler));
+            services.AddMediatR(typeof(Startup));
             services.AddScoped<GlobalExceptionFilterAttribute>();
             services.AddDatabaseSetup();
             

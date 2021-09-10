@@ -10,3 +10,4 @@ Code, Error
 009, Purchase value cannot be empty
 010, Card number doesn't exist
 011, Insufficient funds to complete purchase
+012, Error to get card on database, very card number before try again
