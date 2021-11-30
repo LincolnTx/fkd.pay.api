@@ -37,8 +37,9 @@ namespace fkd.pay.api.Application.CommandHandlers
 
             if (foundCard != null)
             {
-                var exception = new ExceptionNotification("006", "Card number already exists");
-                await _bus.Publish(exception, cancellationToken);
+                // var exception = new ExceptionNotification("006", "Card number already exists");
+                // await _bus.Publish(exception, cancellationToken);
+                // remover comentarios, mas essa pode ser uma resolução para cartoes iguais
                 
                 return Unit.Value;
             }
